@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "food-and-you-app",
+  "private_key_id": "ce35890b4b5cdffcac911b21dedc7a219e84d426",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDMSJY5bub0qGRa\ndEY7lQ6TWQ/LyTzJB8h+r4vflesOjeXUd4QdMd3Y4p/38zit4kRytg1eXXEs6ly1\nN2BDu25OZs8ltFaDKlUDb0TwCqsQzkqfrI/MaUwlrnfaw6d4S9vgoMFatzYkjhhh\ny+aMsDsxBInI/C6BrLKfRhnZPDc9vKPU4r/Lt6VRby5reyezBIHWzfjR0drARdlM\nJ6R0//nVTqMQmpVmwFrYxJJqqJU7plJLIvpK1P2T5aIA6hydW24LexPrXSz8Nq+w\ntfS6rycyUQvo13PGK2TT1mJn0fY0sDigbYYLj2CGkFd2AcOFXh89CR4uau37r5dU\nLK5eYRzbAgMBAAECggEAFLDtdlfDUNiVgYvxaSuJ1Gba8LsrSvlc12gUdMsMiebZ\ndpG8cfCRFdyuc0DRZttaL3w9EmfIhNIgHcLEH1gmrg4/wQPpF1P8VGK6ys1p0kPy\nzwV9cyjfK5nmTeQvXEHivXfK3dNcyosR8SXj7jATbr2U7ySL2VqSpQtGpvgwaDI6\n0kuHOEt/Fd9WTkbhIV9V2rLgKfij/6vVyuFrNHW/Ur7i3V1sShlwwLAXvtidY73a\nkocXuV00BuppYEdXvenPgbJZnRrcgk6rH+i5cENpWP+sjf837t3BnsGv1s2uI58p\nqgdaeQJD8pgLNZS74cHlmEiTNBSf19NF58fjFC3bAQKBgQDtUUxNhu75Dg8uaybl\nKpbwRwBcHPh5eEJUDvZIvI1xrWXNGj0zJOapV6qOwMwky7WRkTFftFZi2qtkSi1s\nntrkHpktj7D/9ADNtUyp6X8ctWWnJzt0nKgvYbxKyqD0AlB6bXo/16mvyVHX7l4t\nK6EjDrUdy2FQLRAaKmAOsoX8QQKBgQDcXYxcXr/nXtFMr19QBXDCxTouJOPyvVZh\nbB6I7KD5Nj94PNoeehb67b9eLg0F55nQNxByYnjXzqc3hEPmA9dpUVA5huzTvuPW\nKJ3EVqt3dY125RlC4WgKJ7JTwgB012KzlgZ17um90Ye0JepWd3FESsh9eBnk57mR\n3v1WeIcCGwKBgDAJrtpan/EGKYiJ5BurXVZR6P68VoewEi0VwkDC+haytNKppw29\nQHuy5TF0UV55Zc2LiGUJChuEjAEHCt7b4Q8gKn2QgpGtAKSjOFuEilhzV5pYVK6s\nL1c3/3dcQOxjs4q0snRN4WlV5R1CgQm/tSR1i6/2RUKHfKTvQvZ2qKyBAoGAQA0s\n5BhiPTURLvH2iULbkLFVBN6SJxcjiXOsuG3XKDi9YAyH9b3U+iCqtAw8ms/DpIKs\n1CKNL2UQs5FNTwkkzqbk46O1KKLehHwPx2bNtg5EDR/wJMFxxSneqnvEODH2rW5Y\n+GR2KkdB43n10CYtlQULm3SSSjeUd7LR/hVQYKsCgYBRXVKUgoiEL32dwGs91fND\nIYCbNW6argqTxRuODax8UZDU20U801u0IkF+Rq93kM68feusoGV5Hhij6PZCjEi0\n6/1sK81lFWeJsd/nD2DR55hPjB0gRUIWy2qxIw5tu3n5QSCCPJC5aNjO7Zt6pew7\nKj0YJL9QGgg65x1HvWOJtg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "user-calendar-diet-prompts@food-and-you-app.iam.gserviceaccount.com",
+  "client_id": "109651272061736610638",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/user-calendar-diet-prompts%40food-and-you-app.iam.gserviceaccount.com"
+}

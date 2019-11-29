@@ -1,0 +1,33 @@
+{
+  "name": "food_and_u_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "env-cmd -f ./config/dev.env nodemon app.js --ignore 'appFiles'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "google-auth-library": "^5.5.1",
+    "googleapis": "^43.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.7.1",
+    "ramda": "^0.26.1",
+    "randomstring": "^1.1.5",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.0.1",
+    "nodemon": "^1.19.2"
+  }
+}
