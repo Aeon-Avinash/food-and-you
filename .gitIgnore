@@ -1,8 +1,8 @@
 # dependencies
-/node_modules
+node_modules
 
 # misc
-/config/dev.env
-/utils/utils_googleOauth/Food And You - App -8bfff71ef3dd.json
-/utils/utils_googleOauth/food-and-you-app-ce35890b4b5c.json
+config/dev.env
+utils/utils_googleOauth/Food And You - App -8bfff71ef3dd.json
+utils/utils_googleOauth/food-and-you-app-ce35890b4b5c.json
 .DS_Store
