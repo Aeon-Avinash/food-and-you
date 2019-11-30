@@ -1,0 +1,219 @@
+.rbc-allday-cell {
+  /* height: 0 !important; */
+  display: none;
+}
+
+.rbc-label {
+  padding: 0 !important;
+}
+
+/** event contents style */
+
+.rbc-event-label {
+  display: inline;
+  padding-top: 0;
+  padding-right: 5px;
+  word-wrap: break-word;
+}
+
+.rbc-event-content {
+  display: inline;
+}
+
+/** DnD views (day, week) event styles */
+
+.rbc-events-container > .rbc-event {
+  border: none;
+  overflow: auto;
+  background-color: inherit;
+  height: "100%";
+}
+
+.rbc-events-container .rbc-event:hover {
+  overflow: visible !important;
+  box-shadow: inherit;
+  /* border: 1px solid #3174ad;
+  border-bottom: none; */
+  background-color: rgba(232, 223, 224, 0.64) !important;
+}
+
+.rbc-events-container .rbc-event .dietEntry {
+  background-color: #3174ad;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: inherit;
+}
+
+.rbc-events-container .rbc-event:hover .dietEntry {
+  overflow: visible !important;
+  background-color: rgba(232, 223, 224, 0.64) !important;
+  color: #3174ad;
+  border-color: #3174ad !important;
+}
+
+.rbc-events-container .rbc-event .mealPlan {
+  background-color: #455a64;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: inherit;
+}
+
+.rbc-events-container .rbc-event:hover .mealPlan {
+  overflow: visible !important;
+  background-color: rgba(232, 223, 224, 0.64) !important;
+  color: #455a64;
+  border-color: #455a64 !important;
+}
+
+/** month view event styles */
+
+.rbc-row-segment .rbc-event {
+  border: none !important;
+  overflow: auto;
+  background-color: transparent !important;
+  color: #fff;
+}
+.rbc-row-segment .rbc-event:hover {
+  overflow: visible !important;
+  background-color: transparent !important;
+}
+
+.rbc-row-segment .rbc-event .dietEntry {
+  background-color: #3174ad;
+}
+
+.rbc-row-segment .rbc-event:hover .dietEntry {
+  overflow: visible;
+  background-color: rgba(232, 223, 224, 0.64) !important;
+  color: #3174ad;
+}
+
+.rbc-row-segment .rbc-event .mealPlan {
+  background-color: #455a64;
+}
+.rbc-row-segment .rbc-event:hover .mealPlan {
+  overflow: visible;
+  background-color: rgba(232, 223, 224, 0.64) !important;
+  color: #455a64;
+}
+
+/** Drag and Drop event styles */
+
+.rbc-addons-dnd-over {
+  z-index: -1;
+}
+.rbc-addons-dnd.rbc-addons-dnd-is-dragging .rbc-event {
+  z-index: -1;
+}
+
+.rbc-addons-dnd.rbc-addons-dnd-dragged-event {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #3174ad;
+}
+
+.rbc-addons-dnd.rbc-addons-dnd-is-dragging .rbc-event.dietEntry {
+  color: #fff;
+  background-color: #3174ad !important;
+}
+
+.rbc-addons-dnd.rbc-addons-dnd-is-dragging .rbc-event.mealPlan {
+  color: #fff;
+  background-color: #455a64 !important;
+}
+
+.rbc-addons-dnd.rbc-addons-dnd-is-dragging
+  .rbc-event:not(.rbc-addons-dnd-dragged-event):not(.rbc-addons-dnd-drag-preview) {
+  color: #fff;
+  background-color: rgba(255, 225, 220, 0.64);
+}
+
+/** time gutter styles */
+
+.rbc-time-header-cell {
+  padding-bottom: 0;
+  height: 100%;
+}
+
+.rbc-time-gutter > .rbc-timeslot-group .rbc-time-slot {
+  background-color: rgba(232, 223, 224, 0.64);
+  padding-left: 0;
+}
+
+.rbc-time-gutter > .rbc-timeslot-group > div {
+  background-color: rgba(232, 223, 224, 0.64) !important;
+}
+
+.rbc-time-gutter > .rbc-timeslot-group {
+  width: 99%;
+  max-height: 99%;
+  border: 1px solid #cccccc;
+  background-color: rgba(232, 223, 224, 0.64);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+
+  position: relative;
+  z-index: 2;
+}
+
+.rbc-time-gutter > .rbc-timeslot-group:hover {
+  box-shadow: 8px 16px 32px 8px rgba(0, 0, 0, 0.2);
+  transform: translate(1px, 1px);
+}
+
+/* .rbc-day-slot > .rbc-timeslot-group > div {
+  background-color: inherit !important;
+} */
+
+.rbc-day-slot > .rbc-timeslot-group {
+  width: 99%;
+  max-height: 99%;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.rbc-day-slot > .rbc-timeslot-group:hover {
+  box-shadow: 8px 16px 32px 8px rgba(0, 0, 0, 0.2);
+  transform: translate(1px, 1px);
+}
+
+.custom-timeslot {
+  width: 99%;
+  max-height: 99%;
+  border: none !important;
+  transition: 0.3s;
+}
+
+.custom-timeslot:hover {
+  transform: translate(2px, 2px);
+}
+
+.rbc-agenda-view table.rbc-agenda-table .rbc-agenda-time-cell {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* .rbc-event {
+  opacity: 1;
+}
+
+.rbc-day-bg:hover .rbc-event {
+  opacity: 0.5;
+} */
+
+.some-div {
+  color: rgba(255, 159, 122, 0.5);
+  background-color: rgba(255, 182, 193, 0.5);
+  background-color: rgba(224, 255, 255, 0.5);
+  background-color: rgba(232, 223, 224, 0.64);
+  background-color: rgba(250, 250, 210, 0.5);
+  background-color: rgba(135, 206, 250, 0.5);
+  background-color: rgba(32, 178, 171, 0.5);
+  background-color: rgba(144, 238, 144, 0.5);
+  background-color: rgba(255, 245, 220, 0.64);
+  background-color: rgba(255, 225, 220, 0.64);
+  background-color: rgba(49, 116, 173, 0.64);
+  background-color: rgba(69, 90, 100, 0.64);
+  background-color: rgba(25, 92, 151, 0.2);
+  background-color: rgba(69, 90, 100, 0.2);
+  background-color: rgba(56, 142, 60, 0.64);
+}
