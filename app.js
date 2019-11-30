@@ -63,6 +63,10 @@ app.use("/spoon", spoonRoutes);
 app.use("/user", userRoutes);
 app.use("/user/tracker", trackerRoutes);
 
+app.get("*", (req, res) => {
+  res.sendFile("index.html");
+});
+
 app.use((error, req, res, next) => {
   // console.log({ error });
   const status = error.statusCode || 500;
