@@ -4,9 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "npm run server",
     "server": "node app.js",
-    "client": "node start-client.js",
     "dev": "env-cmd -f ./config/dev.env nodemon app.js --ignore 'appFiles'"
   },
   "keywords": [],
