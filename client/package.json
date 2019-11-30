@@ -27,7 +27,6 @@
     "lodash.range": "^3.2.0",
     "memoize-one": "^5.1.1",
     "moment": "^2.24.0",
-    "netlify-lambda": "^1.6.3",
     "notistack": "^0.9.6",
     "prop-types": "^15.7.2",
     "querystring": "^0.2.0",

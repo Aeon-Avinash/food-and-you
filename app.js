@@ -26,6 +26,7 @@ console.log(process.env.NODE_ENV);
 // if (process.env.NODE_ENV !== "development") {
 // console.log("In production mode!");
 // app.use(express.static("client/build"));
+app.use(express.static(path.join(__dirname, "client/build")));
 // // }
 
 app.use(bodyParser.json());
