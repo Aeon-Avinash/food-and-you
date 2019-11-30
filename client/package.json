@@ -1,5 +1,5 @@
 {
-  "name": "food_and_u_client",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -76,5 +76,6 @@
   "devDependencies": {
     "redux-devtools-extension": "^2.13.8"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "homepage": "https://food-and-you-node-server.herokuapp.com/"
 }
