@@ -23,10 +23,10 @@ io.on("connection", socket => {
 app.set("io", io);
 
 console.log(process.env.NODE_ENV);
-// if (process.env.NODE_ENV === "development") {
-console.log("In production mode!");
-app.use(express.static("client/build"));
-// }
+// if (process.env.NODE_ENV !== "development") {
+// console.log("In production mode!");
+// app.use(express.static("client/build"));
+// // }
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -65,9 +65,9 @@ app.use("/spoon", spoonRoutes);
 app.use("/user", userRoutes);
 app.use("/user/tracker", trackerRoutes);
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname + "/client/build/index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
 
 app.use((error, req, res, next) => {
   // console.log({ error });
