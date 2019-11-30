@@ -13,7 +13,7 @@ const userRoutes = require("./routes/userRoutes");
 const trackerRoutes = require("./routes/trackerRoutes");
 
 const app = express();
-const PORT = 8000 || process.env.PORT;
+const PORT = process.env.PORT || 8000;
 
 const server = http.createServer(app);
 const io = socketio(server);
