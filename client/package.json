@@ -76,6 +76,5 @@
   "devDependencies": {
     "redux-devtools-extension": "^2.13.8"
   },
-  "proxy": "http://localhost:5000",
-  "homepage": "https://food-and-you-node-server.herokuapp.com/"
+  "proxy": "https://food-and-you-node-server.herokuapp.com/"
 }

@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
+import { createStore, applyMiddleware, compose } from "redux";
+// import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
 import thunk from "redux-thunk";
 import { storeINIT } from "./reducers";
 import reducer from "./reducers";
-import * as actionCreators from "../store/actions";
+// import * as actionCreators from "../store/actions";
 import {
   checkAndSyncLocalStorage,
   SyncLocalStorageWithActions
@@ -22,16 +22,16 @@ const logger = ({ getState }) => next => action => {
 };
 
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const composeEnhancers = composeWithDevTools({
-  actionCreators,
-  trace: true,
-  traceLimit: 25
-});
+// const composeEnhancers = composeWithDevTools({
+//   actionCreators,
+//   trace: true,
+//   traceLimit: 25
+// });
 
 const store = createStore(
   reducer,
   checkAndSyncLocalStorage(storeINIT),
-  composeEnhancers(applyMiddleware(thunk, logger, SyncLocalStorageWithActions))
+  compose(applyMiddleware(thunk, logger, SyncLocalStorageWithActions))
 );
 
 export default store;
