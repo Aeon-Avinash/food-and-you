@@ -1,7 +1,7 @@
 const { OAuth2Client } = require("google-auth-library");
 
 // const keys = require("./food-and-you-app-ce35890b4b5c.json");
-const keys = require("./Food And You - App -8bfff71ef3dd.json");
+const keys = require("./food_and_you_app.googleusercontent.json");
 
 let oAuth2Client;
 module.exports = () => {
