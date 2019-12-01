@@ -1,6 +1,10 @@
 # dependencies
 /node_modules/
 
+/client/node_modules/
+/client/src/utils/ramdaLensHelper.js
+/client/src/components/timeline_components/utils
+
 # misc
 /config/
 /utils/utils_googleOauth/Food And You - App -8bfff71ef3dd.json
