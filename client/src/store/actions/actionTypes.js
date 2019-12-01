@@ -31,6 +31,8 @@ export const // UI State modifying actions
   SET_NUTRI_MODAL_STATE = "SET_NUTRI_MODAL_STATE",
   // -- -- set visibility of modal state
   SET_VISIBILITY_NUTRI_MODAL = "SET_VISIBILITY_NUTRI_MODAL",
+  // -- -- set loader state
+  SET_LOADER_STATE = "SET_LOADER_STATE",
   // Client App State modifying actions
   // -- -- set primary app state
   SET_APP_STATE_PRIMARY = "SET_APP_STATE_PRIMARY",

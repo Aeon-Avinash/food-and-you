@@ -27,7 +27,9 @@ import {
   SET_UI_STATE_NUTRI_HELPER,
   SET_VISIBILITY_NUTRI_HELPER,
   SET_UI_STATE_MEALPLAN_HELPER,
-  SET_VISIBILITY_MEALPLAN_HELPER
+  SET_VISIBILITY_MEALPLAN_HELPER,
+  // -- -- set loader state
+  SET_LOADER_STATE
 } from "../actions/actionTypes";
 
 import {
@@ -76,6 +78,10 @@ export const INIT_STATE = {
   uiNutriModalHelper: {
     uiState: undefined,
     isVisible: false,
+    setVisibiltyTimeout: undefined
+  },
+  uiLoader: {
+    uiState: undefined,
     setVisibiltyTimeout: undefined
   }
 };
@@ -189,6 +195,12 @@ const uiStateReducer = (state = INIT_STATE, action) => {
       }
     case SET_VISIBILITY_NUTRI_MODAL:
       return updateObjProp(state, payload, "uiNutriModalHelper", "isVisible");
+    case SET_LOADER_STATE:
+      if (payload) {
+        return updateObjProp(state, payload, "uiLoader", "uiState");
+      } else {
+        return updateObjProp(state, INIT_STATE.uiLoader, "uiLoader");
+      }
     default:
       return state;
   }

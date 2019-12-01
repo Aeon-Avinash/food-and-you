@@ -18,6 +18,7 @@ import RecipeDetail from "../../recipe_components/RecipeDetail/RecipeDetail";
 import SelectionDetailSnippet from "../../tracker_components/SelectionDetailSnippet/SelectionDetailSnippet";
 import DateTimePicker from "../../tracker_components/DateTimePicker/DateTimePicker";
 import { withSnackbar } from "notistack";
+import OverlayLoader from "../../../ui/OverlayLoader/OverlayLoader";
 
 const styles = theme => ({
   rootPaper: {
@@ -98,6 +99,7 @@ class MealPlanner extends Component {
   };
 
   confirmSlotSelectForEntry = () => {
+    this.props.setLoaderState(true);
     this.props.setConfirmTimeSlotSelection(true);
     // this.props.setDateTimePickerVisibility(false);
   };
@@ -113,6 +115,7 @@ class MealPlanner extends Component {
       );
       // console.log({ ...entryData, ...finalEntry });
 
+      this.props.setLoaderState(true);
       this.props.addEntryToTracker({ ...entryData, ...finalEntry }, () => {
         console.log("redirect after new tracker entry saved successful");
         if (this.props.match.url !== "/tracker/timeline") {
@@ -125,6 +128,7 @@ class MealPlanner extends Component {
         this.props.setEntryModalVisibility(false);
         this.props.clearCurrentRecipesData();
         this.props.clearPrimaryAppState();
+        this.props.setLoaderState(false);
       });
     }
   };
@@ -138,7 +142,8 @@ class MealPlanner extends Component {
       openDetailsModal,
       currentRecipeDetail,
       targetEntrySlot,
-      confirmTimeSlotSelection
+      confirmTimeSlotSelection,
+      overlayLoaderState
     } = this.props;
 
     const recipeDetail =
@@ -146,7 +151,10 @@ class MealPlanner extends Component {
     // (selectedSnippetData && selectedSnippetData.recipeDetail);
     console.log({ recipeDetail });
     return (
-      <div>
+      <OverlayLoader
+        active={overlayLoaderState}
+        text={"adding your new meal plan..."}
+      >
         <Paper className={classes.rootPaper}>
           {errorMessagePrimary ? (
             <Typography variant="h5">{errorMessagePrimary}</Typography>
@@ -227,7 +235,7 @@ class MealPlanner extends Component {
             selectionData={createMealPlan(recipeDetail)}
           />
         ) : null}
-      </div>
+      </OverlayLoader>
     );
   }
 }
@@ -247,7 +255,8 @@ const mapStateToProps = state => ({
   targetEntrySlot: state.appData.tracker.targetTimeline.targetEntrySlot,
 
   openDetailsModal: state.uiState.uiModalTwoHelper.isVisible,
-  dateTimePickerVisibility: state.uiState.uiStateMealplanHelper.isVisible
+  dateTimePickerVisibility: state.uiState.uiStateMealplanHelper.isVisible,
+  overlayLoaderState: state.uiState.uiLoader.uiState
 });
 
 const enhance = compose(
@@ -268,6 +277,7 @@ const enhance = compose(
     setEntryModalVisibility: uiStateActions.setModalOneVisibility,
     setDetailsModalVisibility: uiStateActions.setModalTwoVisibility,
     setDateTimePickerVisibility: uiStateActions.setMealplanHelperVisibility,
+    setLoaderState: uiStateActions.setLoaderState,
 
     clearPrimaryAppState: appStateActions.clearPrimaryAppState,
     clearSecondaryAppState: appStateActions.clearSecondaryAppState

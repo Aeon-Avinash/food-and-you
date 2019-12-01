@@ -200,6 +200,10 @@
   opacity: 0.5;
 } */
 
+._loading_overlay_spinner {
+  margin-top: "80%";
+}
+
 .some-div {
   color: rgba(255, 159, 122, 0.5);
   background-color: rgba(255, 182, 193, 0.5);

@@ -23,6 +23,7 @@ import RecipeList from "../../recipe_components/RecipeList/RecipeList";
 import RecipeDetail from "../../recipe_components/RecipeDetail/RecipeDetail";
 import DateTimePicker from "../../tracker_components/DateTimePicker/DateTimePicker";
 import { createMealPlan } from "../../../helperData/trackerCalculations";
+import OverlayLoader from "../../../ui/OverlayLoader/OverlayLoader";
 
 const styles = theme => ({
   rootPaper: {
@@ -125,6 +126,7 @@ class NutriAnalysis extends Component {
   };
 
   confirmSlotSelectForEntry = () => {
+    this.props.setLoaderState(true);
     this.props.setConfirmTimeSlotSelection(true);
     // this.props.setNutriModalVisibility(true);
   };
@@ -167,7 +169,10 @@ class NutriAnalysis extends Component {
       );
     }
 
-    if (!entryData) return;
+    if (!entryData) {
+      this.props.setLoaderState(false);
+      return;
+    }
     console.log({ ...entryData, ...finalEntry });
 
     this.props.addEntryToTracker({ ...entryData, ...finalEntry }, () => {
@@ -186,6 +191,7 @@ class NutriAnalysis extends Component {
       this.props.setShowNutritionDetail(false);
       this.props.setShowRecipeDetail(false);
       this.props.clearPrimaryAppState();
+      this.props.setLoaderState(false);
     });
   };
 
@@ -203,7 +209,8 @@ class NutriAnalysis extends Component {
       dateTimePickerVisibility,
       openNutriModal,
       targetEntrySlot,
-      confirmTimeSlotSelection
+      confirmTimeSlotSelection,
+      overlayLoaderState
     } = this.props;
 
     let entryData, recipeList, nutritionDetail, recipeDetail;
@@ -232,7 +239,10 @@ class NutriAnalysis extends Component {
     }
     console.log({ entryData, recipeList, recipeDetail, nutritionDetail });
     return (
-      <div>
+      <OverlayLoader
+        active={overlayLoaderState}
+        text={"adding your new diet entry..."}
+      >
         <Paper className={classes.rootPaper}>
           {errorMessagePrimary ? (
             <>
@@ -388,7 +398,7 @@ class NutriAnalysis extends Component {
             }
           />
         ) : null}
-      </div>
+      </OverlayLoader>
     );
   }
 }
@@ -411,7 +421,8 @@ const mapStateToProps = state => ({
   targetEntrySlot: state.appData.tracker.targetTimeline.targetEntrySlot,
 
   openNutriModal: state.uiState.uiNutriModalHelper.isVisible,
-  dateTimePickerVisibility: state.uiState.uiStateNutriHelper.isVisible
+  dateTimePickerVisibility: state.uiState.uiStateNutriHelper.isVisible,
+  overlayLoaderState: state.uiState.uiLoader.uiState
 });
 
 const enhance = compose(
@@ -438,6 +449,7 @@ const enhance = compose(
     setEntryModalVisibility: uiStateActions.setModalOneVisibility,
     setNutriModalVisibility: uiStateActions.setNutriModalVisibility,
     setDateTimePickerVisibility: uiStateActions.setNutriHelperVisibility,
+    setLoaderState: uiStateActions.setLoaderState,
 
     clearPrimaryAppState: appStateActions.clearPrimaryAppState,
     clearSyncNutritionAppState: appStateActions.clearSyncNutritionAppState

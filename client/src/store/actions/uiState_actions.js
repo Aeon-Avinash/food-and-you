@@ -31,7 +31,9 @@ import {
   // -- -- set ui modal state
   SET_NUTRI_MODAL_STATE,
   // -- -- set visibility of modal state
-  SET_VISIBILITY_NUTRI_MODAL
+  SET_VISIBILITY_NUTRI_MODAL,
+  // -- -- set loader state
+  SET_LOADER_STATE
 } from "./actionTypes.js";
 
 export const setUIStateHelperOne = uiState => async dispatch => {
@@ -198,4 +200,17 @@ export const setNutriModalVisibility = isVisible => {
     payload: isVisible,
     persistInLocalStorage: true
   };
+};
+
+export const setLoaderState = loaderState => async dispatch => {
+  //? request to update UI Modal Three state in the Food And You client
+  //* loaderState.setVisibilityTimeout
+  //? check if setVisibilityTimeout is set then invoke a timeout before dispatching
+  //? Or else dispatch immediately
+
+  dispatch({
+    type: SET_LOADER_STATE,
+    payload: loaderState,
+    persistInLocalStorage: true
+  });
 };

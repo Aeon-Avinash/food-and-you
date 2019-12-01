@@ -48,7 +48,7 @@ const refreshAuthLogic = async failedRequest => {
   ) {
     try {
       const tokenRefreshResponse = await axios.post(
-        `${process.env.REACT_APP_FOOD_AND_YOU_SERVER_URL}/token`,
+        `${process.env.REACT_APP_FOOD_AND_YOU_SERVER_URL}/user/token`,
         {
           refreshToken: token.refreshToken
         }
