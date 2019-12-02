@@ -4,6 +4,7 @@ const bodyParser = require("express");
 const http = require("http");
 const cors = require("cors");
 const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 const socketio = require("socket.io");
 
 const mongooseConnect = require("./db/mongoose");
@@ -37,7 +38,8 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MongoStore()
   })
 );
 
