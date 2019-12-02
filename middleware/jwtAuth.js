@@ -15,9 +15,9 @@ module.exports = async (req, res, next) => {
     let decoded, user, drive, calendar;
     if (!req.header("serviceType") || req.header("serviceType") === "JWT") {
       try {
-        console.log(authToken);
-        decoded = jwt.verify(authToken, process.env.JWT_SECRET);
-        console.log({ decoded });
+        // console.log(authToken);
+        decoded = await jwt.verify(authToken, process.env.JWT_SECRET);
+        // console.log({ decoded });
       } catch (err) {
         if (err.name === "TokenExpiredError" || err.message === "jwt expired") {
           const error = new Error(err);
@@ -29,7 +29,10 @@ module.exports = async (req, res, next) => {
         throw error;
       }
 
-      user = await User.findOne({ _id: decoded.userId });
+      user = await User.findOne({
+        _id: decoded.userId,
+        "tokens.accessToken": authToken
+      });
     } else if (req.header("serviceType") === "GOOGLE") {
       const clientResponse = await axios.get(
         `https://www.googleapis.com/oauth2/v2/userinfo`,
@@ -65,11 +68,15 @@ module.exports = async (req, res, next) => {
       req.gDrive = drive;
     } else {
       req.serviceType = "JWT";
+      const activeToken = user.tokens.find(
+        token => token.accessToken === authToken
+      );
+      req.activeToken = activeToken;
     }
     //! req.serviceType: GOOGLE/JWT users with or without full google service integration
     next();
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     const error = new Error(err);
     error.statusCode = err.statusCode || 401;
     next(err);

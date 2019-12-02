@@ -198,11 +198,12 @@ export const logout = () => async (dispatch, getState) => {
 
     console.log(authResponse.status, authResponse.data);
     if (authResponse.status === 200) {
-      const { token, serviceType } = authResponse.data;
+      // const { token, serviceType } = authResponse.data;
       dispatch({
         type: LOGOUT,
-        payload: { token, serviceType },
-        persistInLocalStorage: true
+        // payload: { token, serviceType },
+        clearLocalStorage: true
+        //? clearing local storage upon logout
       });
       dispatch({ type: CONFIRM_SUCCESS_PRIMARY });
 

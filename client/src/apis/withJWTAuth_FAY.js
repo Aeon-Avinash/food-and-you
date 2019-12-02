@@ -71,7 +71,7 @@ const refreshAuthLogic = async failedRequest => {
     setTimeout(() => {
       store.dispatch({
         type: "LOGOUT",
-        persistInLocalStorage: true
+        clearLocalStorage: true
       });
     }, 5000);
 

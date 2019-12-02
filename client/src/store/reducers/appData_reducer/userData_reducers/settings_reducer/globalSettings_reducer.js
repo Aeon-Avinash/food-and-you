@@ -2,7 +2,10 @@ import {
   // -- --store user global settings
   GET_GLOBAL_SETTINGS,
   // -- --edit user global settings
-  EDIT_GLOBAL_SETTINGS
+  EDIT_GLOBAL_SETTINGS,
+  // -- --logout
+  LOGOUT
+  // -- --logout from all devices
 } from "../../../../actions/actionTypes";
 
 // import { updateObjProp, updateObjAddToArr } from "../../../utils/updateHelpers";
@@ -26,6 +29,8 @@ export const INIT_STATE = {
 const globalSettingsReducer = (globalSettingsState = INIT_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
+    case LOGOUT:
+      return INIT_STATE;
     case GET_GLOBAL_SETTINGS:
       return { ...payload };
     case EDIT_GLOBAL_SETTINGS:

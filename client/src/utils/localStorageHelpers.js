@@ -53,5 +53,9 @@ export const SyncLocalStorageWithActions = ({ getState }) => next => action => {
   if (action.persistInLocalStorage) {
     window.localStorage.setItem("foodAndYou_App", JSON.stringify(state));
   }
+  if (action.clearLocalStorage) {
+    window.localStorage.removeItem("foodAndYou_App");
+    window.localStorage.removeItem("token");
+  }
   return returnValue;
 };

@@ -13,6 +13,9 @@ import {
   // -- --remove tracker entry
   REMOVE_TRACKER_ENTRY,
   // -- --set default tracker
+  // -- --logout
+  LOGOUT,
+  // -- --logout from all devices
   // SET_DEFAULT_TRACKER,
   // -- --change timeline selection
   SET_CURRENT_TIMELINE_VIEW,
@@ -149,6 +152,8 @@ export const INIT_STATE = {
 const trackerReducer = (state = INIT_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
+    case LOGOUT:
+      return INIT_STATE;
     case GET_ALL_TRACKERS:
       return {
         ...state,

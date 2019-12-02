@@ -143,7 +143,7 @@ exports.userSignup = async (req, res, next) => {
 
     res.status(201).json({
       message: "Successful User Signup",
-      token: token,
+      token: token, //? returning token only the specific client login instance
       serviceType: "JWT"
     });
   } catch (err) {
@@ -174,7 +174,7 @@ exports.userLogin = async (req, res, next) => {
 
     res.status(200).json({
       message: "Successful User Login",
-      token: token,
+      token: token, //? returning token only the specific client login instance
       serviceType: "JWT"
     });
   } catch (err) {
@@ -199,13 +199,19 @@ exports.generateAccessToken = async (req, res, next) => {
       throw error;
     }
 
-    console.log(user.tokens);
+    // console.log(user.tokens);
 
-    console.log(user.tokens.refreshToken === refreshToken);
-    if (user.tokens.refreshToken === refreshToken) {
-      if (new Date(moment(user.tokens.refreshTokenExpiry)) < new Date()) {
-        let tokens = user.tokens;
-        delete tokens[refreshToken];
+    const activeToken = user.tokens.find(
+      token => token.refreshToken === refreshToken
+    );
+
+    if (activeToken) {
+      console.log("valid refresh token of user");
+      if (new Date(moment(activeToken.refreshTokenExpiry)) < new Date()) {
+        user.tokens = user.tokens.filter(
+          token => token.refreshToken !== refreshToken
+        );
+        await user.save();
         const error = new Error("Session expired. Please login again!");
         error.statusCode = 404;
         throw error;
@@ -221,7 +227,7 @@ exports.generateAccessToken = async (req, res, next) => {
 
     res.status(200).json({
       message: "Successful refresh token and Logged in",
-      token: token,
+      token: token, //? returning updated token only the specific client login instance
       serviceType: "JWT"
     });
   } catch (err) {
@@ -279,7 +285,7 @@ exports.updateProfile = async (req, res, next) => {
     //* if the provided diet preference is a valid option from the select list (client-server)
     //* If no validation errors, then update the user
 
-    console.log({ updateCategory, value, updateKeyPath });
+    // console.log({ updateCategory, value, updateKeyPath });
 
     if (
       updateCategory === "email" ||
@@ -305,7 +311,7 @@ exports.updateProfile = async (req, res, next) => {
 
     await user.save();
 
-    console.log(user);
+    // console.log(user);
 
     let userConfigFile;
     //* update gDrive config file only for settings update
@@ -408,11 +414,34 @@ exports.passwordResetConfirm = async (req, res, next) => {
 exports.userLogout = async (req, res, next) => {
   try {
     // const { _id } = req.user;
-    req.user.tokens = {};
+    console.log("logout for requestToken:", req.activeToken.refreshToken);
+
+    req.user.tokens = req.user.tokens.filter(
+      token => token.refreshToken !== req.activeToken.refreshToken
+    );
     await req.user.save();
 
     res.status(200).json({
       message: " User Logged out succesfully"
+    });
+  } catch (err) {
+    console.log(err);
+    const error = new Error(err);
+    error.statusCode = err.statusCode || 500;
+    next(error);
+  }
+};
+
+exports.userLogoutFromAll = async (req, res, next) => {
+  try {
+    // const { _id } = req.user;
+    console.log("logout from all devices");
+
+    req.user.tokens = [];
+    await req.user.save();
+
+    res.status(200).json({
+      message: " User Logged out succesfully from all devices"
     });
   } catch (err) {
     console.log(err);

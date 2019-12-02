@@ -18,10 +18,15 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String
   },
-  tokens: {
-    type: Object,
-    default: {}
-  },
+  tokens: [
+    {
+      accessToken: String,
+      refreshToken: String,
+      accessTokenExpiry: Date,
+      refreshTokenExpiry: Date,
+      status: String
+    }
+  ],
   trackers: [
     {
       type: mongoose.Schema.Types.ObjectId,

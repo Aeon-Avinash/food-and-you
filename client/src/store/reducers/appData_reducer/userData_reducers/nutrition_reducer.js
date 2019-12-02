@@ -13,7 +13,10 @@ import {
   // -- --show recipe detail
   SET_SHOW_RECIPE_DETAIL,
   // -- --clear current nutrition data
-  CLEAR_CURRENT_NUTRITION_DATA
+  CLEAR_CURRENT_NUTRITION_DATA,
+  // -- --logout
+  LOGOUT
+  // -- --logout from all devices
 } from "../../../actions/actionTypes";
 
 import {
@@ -36,6 +39,8 @@ export const INIT_STATE = {
 const nutritionReducer = (nutritionState = INIT_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
+    case LOGOUT:
+      return INIT_STATE;
     case GET_USER_SAVED_NUTRITION:
       return updateObjProp(nutritionState, payload, "saved");
     case GET_NUTRITION:

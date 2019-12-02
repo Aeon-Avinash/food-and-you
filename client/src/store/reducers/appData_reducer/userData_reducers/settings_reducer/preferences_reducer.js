@@ -2,7 +2,10 @@ import {
   // -- --store user preferences
   GET_PREFERENCES,
   // -- --edit user preferences
-  EDIT_PREFERENCES
+  EDIT_PREFERENCES,
+  // -- --logout
+  LOGOUT
+  // -- --logout from all devices
 } from "../../../../actions/actionTypes";
 
 // import { updateObjProp, updateObjAddToArr, updateObjRemoveFromArr, updateArrInObjAddOrReplaceById } from "../../../../../utils/updateHelpers";
@@ -72,6 +75,8 @@ export const INIT_STATE = {
 const preferencesReducer = (preferencesState = INIT_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
+    case LOGOUT:
+      return INIT_STATE;
     case GET_PREFERENCES:
       return { ...payload };
     case EDIT_PREFERENCES:

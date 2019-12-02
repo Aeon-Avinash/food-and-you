@@ -31,10 +31,16 @@ exports.generateJWToken = async function(user) {
       status: "Logged In"
     };
 
-    user.tokens = tokenObj;
+    if (!user.tokens) {
+      user.tokens = [];
+    }
+
+    user.tokens = user.tokens.concat(tokenObj);
     await user.save();
 
-    return user.tokens;
+    // console.log(user.tokens);
+
+    return tokenObj;
   } catch (err) {
     console.log(err);
     throw new Error(err);
@@ -51,17 +57,23 @@ exports.generateNewAccessToken = async function(user, refreshToken) {
       }
     );
 
-    user.tokens = {
-      ...user.tokens,
-      accessToken,
-      accessTokenExpiry: moment(new Date())
-        .add(1, "hour")
-        .toDate()
-    };
+    user.tokens = user.tokens.map(token =>
+      token.refreshToken === refreshToken
+        ? {
+            refreshToken,
+            refreshTokenExpiry: token.refreshTokenExpiry,
+            accessToken,
+            accessTokenExpiry: moment(new Date())
+              .add(1, "hour")
+              .toDate(),
+            status: "Logged In"
+          }
+        : token
+    );
 
     await user.save();
 
-    return user.tokens;
+    return user.tokens.find(token => token.refreshToken === refreshToken);
   } catch (err) {
     console.log(err);
     throw new Error(err);

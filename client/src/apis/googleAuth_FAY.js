@@ -69,7 +69,7 @@ googleAuth_FAY.interceptors.response.use(
       setTimeout(() => {
         store.dispatch({
           type: "LOGOUT",
-          persistInLocalStorage: true
+          clearLocalStorage: true
         });
       }, 5000);
     }

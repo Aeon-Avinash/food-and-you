@@ -19,7 +19,10 @@ import {
   // -- --set current timeline recipes detail
   SET_CURRENT_TIMELINE_RECIPES_DETAIL,
   // -- --clear current recipes data
-  CLEAR_CURRENT_RECIPES_DATA
+  CLEAR_CURRENT_RECIPES_DATA,
+  // -- --logout
+  LOGOUT
+  // -- --logout from all devices
 } from "../../../actions/actionTypes";
 
 import {
@@ -46,6 +49,8 @@ export const INIT_STATE = {
 const recipesReducer = (recipesState = INIT_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
+    case LOGOUT:
+      return INIT_STATE;
     case GET_USER_SAVED_RECIPES:
       console.log(payload);
       return updateObjProp(recipesState, payload, "saved");
