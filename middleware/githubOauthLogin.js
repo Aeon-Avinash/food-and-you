@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
     const githubOAuthURL = `https://github.com/login/oauth/authorize?${qs.stringify(
       {
         client_id: process.env.GITHUB_CLIENT_ID,
-        redirect_uri: "http://localhost:8000/user/oauth/githubRedirect"
+        redirect_uri: `${process.env.REACT_APP_FOOD_AND_YOU_SERVER_URL}/user/oauth/githubRedirect`
       }
     )}`;
     req.session.socketId = socketId;
