@@ -55,7 +55,7 @@ class OAuthOptions extends Component {
       height = 600;
     const left = window.innerWidth / 2 - width / 2;
     const top = window.innerHeight / 2 - height / 2;
-    const url = `http://localhost:8000/user/oauth/${provider}Login?socketId=${socket.id}`;
+    const url = `${process.env.REACT_APP_FOOD_AND_YOU_SERVER_URL}/user/oauth/${provider}Login?socketId=${socket.id}`;
 
     return window.open(
       url,
