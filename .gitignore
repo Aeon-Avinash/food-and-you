@@ -11,5 +11,6 @@
 /config/
 /utils/utils_googleOauth/Food And You - App -8bfff71ef3dd.json
 /utils/utils_googleOauth/food-and-you-app-ce35890b4b5c.json
+/utils/utils_googleOauth/food_and_you_app.googleusercontent.json
 Procfile
 .DS_Store
