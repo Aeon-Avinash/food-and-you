@@ -1,9 +1,10 @@
-import { createStore, applyMiddleware, compose } from "redux";
-// import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
+import { createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
+import { compose } from "redux";
 import thunk from "redux-thunk";
 import { storeINIT } from "./reducers";
 import reducer from "./reducers";
-// import * as actionCreators from "../store/actions";
+import * as actionCreators from "../store/actions";
 import {
   checkAndSyncLocalStorage,
   SyncLocalStorageWithActions
@@ -21,17 +22,20 @@ const logger = ({ getState }) => next => action => {
   return returnValue;
 };
 
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// const composeEnhancers = composeWithDevTools({
-//   actionCreators,
-//   trace: true,
-//   traceLimit: 25
-// });
+let composeEnhancers = compose;
+// composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+if (process.env.NODE_ENV !== "production") {
+  composeEnhancers = composeWithDevTools({
+    actionCreators,
+    trace: true,
+    traceLimit: 25
+  });
+}
 
 const store = createStore(
   reducer,
   checkAndSyncLocalStorage(storeINIT),
-  compose(applyMiddleware(thunk, logger, SyncLocalStorageWithActions))
+  composeEnhancers(applyMiddleware(thunk, logger, SyncLocalStorageWithActions))
 );
 
 export default store;
