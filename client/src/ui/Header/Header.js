@@ -1,15 +1,20 @@
-import React, { Component } from "react";
-import { compose } from "redux";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-// import Paper from '@material-ui/core/Paper';
-// import Button from '@material-ui/core/Button';
+import Drawer from "@material-ui/core/Drawer";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
 import NavLink from "../NavLink/NavLink";
 import Typography from "@material-ui/core/Typography";
 
-const styles = theme => ({
+import NavLinkGroup from "../NavLinkGroup/NavLinkGroup";
+import Logo from "../foodAndYou_logo.png";
+
+const useStyles = makeStyles(theme => ({
   appBar: {
     maxHeight: "150px",
     width: "100%",
@@ -21,111 +26,131 @@ const styles = theme => ({
     flexDirection: "row",
     justifyContent: "space-between"
   },
-  headerNav: {
+  navLinkGroup: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+    alignItems: "center",
+    [theme.breakpoints.up("md")]: {
+      flexDirection: "row",
+      justifyContent: "flex-end"
+    }
+  },
+  sideDrawer: {
+    width: "33%"
+  },
+  sideDrawerNavGroup: {
     width: "100%",
-    marginTop: 0,
-    padding: 10
+    marginTop: 30
   },
-  activeNavLink: {
-    color: theme.palette.secondary.main,
-    textDecoration: "underline"
+  menuButton: {
+    marginLeft: theme.spacing(2)
   },
-  navLinkGroup: {},
-  navLink: {
-    marginLeft: 10,
-    marginRight: 10,
+  navBrand: {
     paddingLeft: 5,
-    paddingRight: 5
+    paddingRight: 5,
+    textDecoration: "none",
+    outline: "none",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  logo: {
+    paddingLeft: 0,
+    paddingRight: 0
   }
-});
-
-class Header extends Component {
-  render() {
-    const { classes, authenticated } = this.props;
-    return (
-      <AppBar position="absolute" color="default" className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
-          <Typography variant="h6" color="inherit" noWrap>
-            Food &amp; You
-          </Typography>
-          <div className={classes.navLinkGroup}>
-            {authenticated ? (
-              <NavLink
-                exact
-                to="/user/dashboard"
-                className={classes.navLink}
-                activeClassName={classes.activeNavLink}
-              >
-                My Dashboard
-              </NavLink>
-            ) : (
-              <NavLink
-                exact
-                to="/auth/guestAccess"
-                className={classes.navLink}
-                activeClassName={classes.activeNavLink}
-              >
-                Home
-              </NavLink>
-            )}
-            {authenticated && (
-              <NavLink
-                // exact
-                to="/tracker"
-                className={classes.navLink}
-                activeClassName={classes.activeNavLink}
-              >
-                Diet Tracker
-              </NavLink>
-            )}
-            <NavLink
-              // exact
-              to="/nutrition"
-              className={classes.navLink}
-              activeClassName={classes.activeNavLink}
-            >
-              Get Nutrition
-            </NavLink>
-            <NavLink
-              // exact
-              to="/recipes"
-              className={classes.navLink}
-              activeClassName={classes.activeNavLink}
-            >
-              Get Recipes
-            </NavLink>
-            {authenticated && (
-              <NavLink
-                // exact
-                to="/settings"
-                className={classes.navLink}
-                activeClassName={classes.activeNavLink}
-              >
-                App Settings
-              </NavLink>
-            )}
-            {!authenticated && (
-              <NavLink
-                // exact
-                to="/auth/authLanding"
-                className={classes.navLink}
-                activeClassName={classes.activeNavLink}
-              >
-                Sign In
-              </NavLink>
-            )}
-          </div>
-        </Toolbar>
-      </AppBar>
-    );
-  }
-}
+}));
 
 const mapStateToProps = state => ({
   authenticated: state.appData.auth.token,
   serviceType: state.appData.auth.serviceType
 });
 
-const enhance = compose(withStyles(styles), connect(mapStateToProps));
+const Header = connect(mapStateToProps)(props => {
+  const [drawerVisibility, setDrawerVisibility] = useState(false);
+  const classes = useStyles();
+  const { authenticated } = props;
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
 
-export default enhance(Header);
+  const toggleSideDrawer = event => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setDrawerVisibility(!drawerVisibility);
+  };
+
+  console.log(drawerVisibility);
+  return (
+    <AppBar position="absolute" color="default" className={classes.appBar}>
+      <Toolbar className={classes.toolbar}>
+        <Button>
+          <NavLink
+            exact
+            to={authenticated ? "/user/dashboard" : "/auth/guestAccess"}
+            className={classes.navBrand}
+          >
+            <Typography variant="h6" color="inherit" noWrap>
+              {"Food"}
+            </Typography>
+            <div className={classes.logo} color="inherit">
+              <img
+                src={Logo}
+                width={50}
+                height={50}
+                alt={"food-and-you-logo"}
+              />
+            </div>
+            <Typography variant="h6" color="inherit" noWrap>
+              {"You"}
+            </Typography>
+          </NavLink>
+        </Button>
+        <div>
+          {!matches ? (
+            drawerVisibility ? (
+              <Drawer
+                open={drawerVisibility}
+                onClose={toggleSideDrawer}
+                onClick={toggleSideDrawer}
+                classes={{
+                  paper: classes.sideDrawer
+                }}
+              >
+                <div className={classes.sideDrawerNavGroup}></div>
+                <NavLinkGroup
+                  authenticated={authenticated}
+                  onClick={toggleSideDrawer}
+                  className={classes.navLinkGroup}
+                  drawerVisibility={drawerVisibility}
+                />
+              </Drawer>
+            ) : (
+              <IconButton
+                edge="end"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="menu"
+                onClick={toggleSideDrawer}
+              >
+                <MenuIcon />
+              </IconButton>
+            )
+          ) : (
+            <NavLinkGroup
+              authenticated={authenticated}
+              className={classes.navLinkGroup}
+            />
+          )}
+        </div>
+      </Toolbar>
+    </AppBar>
+  );
+});
+
+export default Header;

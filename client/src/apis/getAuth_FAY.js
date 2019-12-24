@@ -11,9 +11,13 @@ const getAuth_FAY = axios.create({
 
 getAuth_FAY.interceptors.request.use(
   config => {
+    console.log(config.baseURL);
+    console.log(config.url);
+    // console.log(getAuth_FAY.getUri());
     return config;
   },
   error => {
+    console.log(error);
     console.log(error.response);
     return Promise.reject(error.response);
   }
@@ -29,6 +33,7 @@ getAuth_FAY.interceptors.response.use(
     return response;
   },
   error => {
+    console.log(error);
     console.log(error.response);
     return Promise.reject(error.response);
     //? Important: return and reject: error.response

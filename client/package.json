@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "food_and_u_client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -76,5 +76,5 @@
     ]
   },
   "devDependencies": {},
-  "proxy": "https://food-and-you.herokuapp.com"
+  "homepage": "https://food-and-you.herokuapp.com"
 }

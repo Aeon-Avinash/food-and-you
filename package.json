@@ -7,14 +7,15 @@
     "start": "npm run server",
     "server": "node app.js",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "dev": "env-cmd -f ./config/dev.env nodemon app.js --ignore 'appFiles'"
+    "dev": "env-cmd -f ./config/dev.env nodemon app.js --ignore 'appFiles'",
+    "prod": "env-cmd -f ./config/dev.env nodemon app.js --ignore 'appFiles'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
-    "bcrypt": "^3.0.6",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-mongo": "^3.2.0",
     "cors": "^2.8.5",

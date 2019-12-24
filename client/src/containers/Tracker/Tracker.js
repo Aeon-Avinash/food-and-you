@@ -103,13 +103,9 @@ class Tracker extends Component {
     //* Fixing Timeline Performance */
     //* Optimize React components performance with PureComponents & React.Memo */
 
-    //* Google OAuth & Github OAuth linking & testing */
-    //* Create oAuth User Message upon permission denial */
-
-    //* App Deployment */
-    //* stage 1 deployment, console.logs to be there for the client */
-    //* create .env & store all sensitive KEYS in there */
-    //* create .gitIngnore & omit all unessential extra folders as well as node_modules, .env */
+    //* Responsive UI */
+    //* Make all components change layout with mediaQueries */
+    //* Make the tracker calendar suitable for mobile view */
 
     return (
       <div>

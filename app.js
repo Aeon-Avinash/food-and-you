@@ -28,12 +28,13 @@ console.log(process.env.NODE_ENV);
 // if (process.env.NODE_ENV !== "development") {
 // console.log("In production mode!");
 // app.use(express.static("client/build"));
-app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static(path.join(__dirname, "build")));
 // // }
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors());
+// app.use(cors({ origin: "http://localhost:3000" }));
 
 app.use(
   session({
@@ -69,13 +70,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/edamam", edamamRoutes);
-app.use("/spoon", spoonRoutes);
-app.use("/user", userRoutes);
-app.use("/user/tracker", trackerRoutes);
+app.use("/api/edamam", edamamRoutes);
+app.use("/api/spoon", spoonRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/user/tracker", trackerRoutes);
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  res.sendFile(path.join(__dirname + "/../build/index.html"));
 });
 
 app.use((error, req, res, next) => {
