@@ -29,7 +29,7 @@
     "mongoose": "^5.7.13",
     "ramda": "^0.26.1",
     "randomstring": "^1.1.5",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.0"
   },
   "devDependencies": {
     "env-cmd": "^10.0.1",
