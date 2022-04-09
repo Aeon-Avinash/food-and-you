@@ -24,7 +24,7 @@
     "google-auth-library": "^5.5.1",
     "googleapis": "^43.0.0",
     "jsonwebtoken": "^8.5.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "mongodb": "^3.3.2",
     "mongoose": "^5.7.13",
     "ramda": "^0.26.1",
